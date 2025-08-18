@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { TarotCard } from "./TarotCard";
@@ -11,13 +12,18 @@ const drawOptions = [
 ];
 
 export function CardDraw() {
+  const navigate = useNavigate();
   const [drawnCards, setDrawnCards] = useState<TarotCardType[]>([]);
   const [revealedCards, setRevealedCards] = useState<number[]>([]);
   const [isDrawing, setIsDrawing] = useState(false);
+  const [currentDrawType, setCurrentDrawType] = useState<string>("");
 
   const drawCards = async (count: 1 | 3 | 5) => {
     setIsDrawing(true);
     setRevealedCards([]);
+    
+    const drawType = drawOptions.find(option => option.count === count)?.title || "Single Card";
+    setCurrentDrawType(drawType);
     
     // Simulate card shuffling delay
     await new Promise(resolve => setTimeout(resolve, 1000));
@@ -30,6 +36,20 @@ export function CardDraw() {
   const revealCard = (index: number) => {
     setRevealedCards(prev => [...prev, index]);
   };
+
+  // Navigate to results when all cards are revealed
+  useEffect(() => {
+    if (drawnCards.length > 0 && revealedCards.length === drawnCards.length) {
+      setTimeout(() => {
+        navigate('/results', {
+          state: {
+            cards: drawnCards,
+            drawType: currentDrawType
+          }
+        });
+      }, 2000); // Wait 2 seconds after all cards are revealed
+    }
+  }, [drawnCards.length, revealedCards.length, navigate, drawnCards, currentDrawType]);
 
   return (
     <div className="space-y-8">
@@ -93,6 +113,13 @@ export function CardDraw() {
                 <span>Present</span>
                 <span>Future</span>
               </div>
+            </div>
+          )}
+
+          {revealedCards.length === drawnCards.length && drawnCards.length > 0 && (
+            <div className="text-center py-8">
+              <div className="inline-block animate-spin rounded-full h-6 w-6 border-b-2 border-mystical mb-4"></div>
+              <p className="text-mystical font-medium">Preparing your complete reading...</p>
             </div>
           )}
         </div>
