@@ -14,10 +14,10 @@ export function Home() {
             <div className="text-4xl">🌙</div>
           </div>
           <h1 className="text-3xl font-playfair font-bold text-mystical mb-3">
-            The Marseille Tarot
+            Le Tarot de Marseille
           </h1>
           <p className="text-muted-foreground text-lg leading-relaxed">
-            A journey of self-reflection and inner wisdom
+            Un voyage d'introspection et de sagesse intérieure
           </p>
         </div>
 
@@ -25,16 +25,16 @@ export function Home() {
         <Card className="card-premium mb-8 transition-smooth">
           <CardContent className="p-6">
             <h2 className="text-xl font-playfair font-semibold text-mystical mb-4">
-              Welcome to Your Inner Journey
+              Bienvenue dans votre voyage intérieur
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-4">
-              Discover insights through the ancient wisdom of the Marseille Tarot. 
-              This is not fortune-telling, but a gentle guide for self-reflection 
-              and personal growth.
+              Découvrez des éclairages à travers la sagesse ancestrale du Tarot de Marseille. 
+              Il ne s'agit pas de voyance, mais d'un guide bienveillant pour l'introspection 
+              et le développement personnel.
             </p>
             <p className="text-muted-foreground leading-relaxed text-sm">
-              Each reading offers psychological insights and therapeutic guidance 
-              to support your journey of self-understanding.
+              Chaque tirage offre des perspectives psychologiques et des conseils thérapeutiques 
+              pour accompagner votre chemin vers la connaissance de soi.
             </p>
           </CardContent>
         </Card>
@@ -44,13 +44,13 @@ export function Home() {
           onClick={() => navigate('/draw')}
           className="w-full h-14 text-lg font-medium bg-gradient-mystical hover:opacity-90 transition-smooth shadow-card"
         >
-          Begin Your Reading
+          Commencer votre tirage
         </Button>
 
         {/* Footer */}
         <div className="text-center mt-8">
           <p className="text-xs text-muted-foreground/70">
-            Take a moment to center yourself before you begin
+            Prenez un moment pour vous centrer avant de commencer
           </p>
         </div>
       </div>

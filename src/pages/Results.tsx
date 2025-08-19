@@ -34,33 +34,33 @@ export function Results() {
   const generateReading = () => {
     const cardDescriptions = cards.map((card, index) => {
       const position = cards.length === 3 
-        ? ["Past", "Present", "Future"][index]
+        ? ["Passé", "Présent", "Futur"][index]
         : cards.length === 5 
-        ? ["Foundation", "Challenge", "Distant Past", "Recent Past", "Outcome"][index]
-        : "Your Card";
+        ? ["Fondation", "Défi", "Passé Lointain", "Passé Récent", "Résultat"][index]
+        : "Votre Carte";
       
       return `${position}: ${card.name}
 ${card.uprightMeaning}
 
-Psychological Insight: ${card.psychologicalMeaning}
+Éclairage Psychologique: ${card.psychologicalMeaning}
 
-Personal Growth: ${card.personalGrowth}`;
+Développement Personnel: ${card.personalGrowth}`;
     }).join('\n\n---\n\n');
 
     const overallInsight = cards.length === 1 
       ? cards[0].therapeuticInsight
-      : `Your ${drawType} reading reveals a beautiful journey of growth and self-discovery. Each card speaks to different aspects of your current experience, offering gentle guidance for your path forward. Trust in your inner wisdom and remember that every experience - whether challenging or joyful - contributes to your evolution. You have all the resources within you to navigate this journey with grace and authenticity.`;
+      : `Votre tirage ${drawType} révèle un magnifique parcours de croissance et de découverte de soi. Chaque carte parle à différents aspects de votre expérience actuelle, offrant des conseils bienveillants pour votre chemin à venir. Faites confiance à votre sagesse intérieure et rappelez-vous que chaque expérience - qu'elle soit difficile ou joyeuse - contribue à votre évolution. Vous avez toutes les ressources en vous pour naviguer ce voyage avec grâce et authenticité.`;
 
-    return `THE MARSEILLE TAROT - Your ${drawType} Reading
+    return `LE TAROT DE MARSEILLE - Votre tirage ${drawType}
 
 ${cardDescriptions}
 
 ---
 
-Therapeutic Reflection:
+Réflexion Thérapeutique:
 ${overallInsight}
 
-Remember: This reading is a mirror for your inner wisdom. Trust what resonates and use these insights as gentle guidance on your journey of self-discovery and growth.`;
+Rappel: Cette lecture est un miroir de votre sagesse intérieure. Faites confiance à ce qui résonne et utilisez ces éclairages comme une guidance bienveillante sur votre chemin de découverte de soi et de croissance.`;
   };
 
   const handleShare = async () => {
@@ -70,16 +70,16 @@ Remember: This reading is a mirror for your inner wisdom. Trust what resonates a
     try {
       if (navigator.share) {
         await navigator.share({
-          title: 'My Tarot Reading',
+          title: 'Mon tirage de Tarot',
           text: readingText,
         });
       } else {
         await navigator.clipboard.writeText(readingText);
-        toast.success("Reading copied to clipboard!");
+        toast.success("Lecture copiée dans le presse-papiers !");
       }
     } catch (error) {
       console.error('Error sharing:', error);
-      toast.error("Could not share reading");
+      toast.error("Impossible de partager la lecture");
     } finally {
       setIsSharing(false);
     }
@@ -87,9 +87,9 @@ Remember: This reading is a mirror for your inner wisdom. Trust what resonates a
 
   const getPositionLabel = (index: number) => {
     if (cards.length === 3) {
-      return ["Past", "Present", "Future"][index];
+      return ["Passé", "Présent", "Futur"][index];
     } else if (cards.length === 5) {
-      return ["Foundation", "Challenge", "Distant Past", "Recent Past", "Outcome"][index];
+      return ["Fondation", "Défi", "Passé Lointain", "Passé Récent", "Résultat"][index];
     }
     return "";
   };
@@ -99,9 +99,9 @@ Remember: This reading is a mirror for your inner wisdom. Trust what resonates a
       <div className="max-w-4xl mx-auto space-y-6">
         {/* Header */}
         <div className="text-center space-y-2">
-          <h1 className="text-3xl font-bold text-mystical">Your Reading</h1>
+          <h1 className="text-3xl font-bold text-mystical">Votre tirage</h1>
           <p className="text-muted-foreground">
-            {drawType} • {new Date().toLocaleDateString()}
+            {drawType} • {new Date().toLocaleDateString('fr-FR')}
           </p>
         </div>
 
@@ -144,7 +144,7 @@ Remember: This reading is a mirror for your inner wisdom. Trust what resonates a
               </CardHeader>
               <CardContent className="space-y-4">
                 <div>
-                  <h4 className="font-semibold text-mystical mb-2">Card Meaning</h4>
+                  <h4 className="font-semibold text-mystical mb-2">Signification de la carte</h4>
                   <p className="text-muted-foreground leading-relaxed">
                     {card.uprightMeaning}
                   </p>
@@ -153,14 +153,14 @@ Remember: This reading is a mirror for your inner wisdom. Trust what resonates a
                 <Separator className="bg-mystical/20" />
                 
                 <div>
-                  <h4 className="font-semibold text-mystical mb-2">Psychological Insight</h4>
+                  <h4 className="font-semibold text-mystical mb-2">Éclairage psychologique</h4>
                   <p className="text-muted-foreground leading-relaxed">
                     {card.psychologicalMeaning}
                   </p>
                 </div>
                 
                 <div>
-                  <h4 className="font-semibold text-mystical mb-2">Personal Growth</h4>
+                  <h4 className="font-semibold text-mystical mb-2">Développement personnel</h4>
                   <p className="text-muted-foreground leading-relaxed">
                     {card.personalGrowth}
                   </p>
@@ -174,14 +174,14 @@ Remember: This reading is a mirror for your inner wisdom. Trust what resonates a
         <Card className="bg-gradient-to-r from-mystical/10 via-accent/10 to-gold/10 border-mystical/30">
           <CardHeader>
             <CardTitle className="text-xl text-mystical text-center">
-              Therapeutic Reflection
+              Réflexion thérapeutique
             </CardTitle>
           </CardHeader>
           <CardContent>
             <p className="text-muted-foreground leading-relaxed text-center">
               {cards.length === 1 
                 ? cards[0].therapeuticInsight
-                : `Your ${drawType} reading reveals a beautiful journey of growth and self-discovery. Each card speaks to different aspects of your current experience, offering gentle guidance for your path forward. Trust in your inner wisdom and remember that every experience - whether challenging or joyful - contributes to your evolution. You have all the resources within you to navigate this journey with grace and authenticity.`
+                : `Votre tirage ${drawType} révèle un magnifique parcours de croissance et de découverte de soi. Chaque carte parle à différents aspects de votre expérience actuelle, offrant des conseils bienveillants pour votre chemin à venir. Faites confiance à votre sagesse intérieure et rappelez-vous que chaque expérience - qu'elle soit difficile ou joyeuse - contribue à votre évolution. Vous avez toutes les ressources en vous pour naviguer ce voyage avec grâce et authenticité.`
               }
             </p>
           </CardContent>
@@ -195,7 +195,7 @@ Remember: This reading is a mirror for your inner wisdom. Trust what resonates a
             className="bg-mystical hover:bg-mystical/90 text-white"
           >
             <Share2 className="w-4 h-4 mr-2" />
-            {isSharing ? "Sharing..." : "Share Reading"}
+            {isSharing ? "Partage..." : "Partager le tirage"}
           </Button>
           
           <Button
@@ -204,7 +204,7 @@ Remember: This reading is a mirror for your inner wisdom. Trust what resonates a
             className="border-mystical/30 hover:bg-mystical/10"
           >
             <RotateCcw className="w-4 h-4 mr-2" />
-            New Reading
+            Nouveau tirage
           </Button>
           
           <Button
@@ -213,7 +213,7 @@ Remember: This reading is a mirror for your inner wisdom. Trust what resonates a
             className="border-mystical/30 hover:bg-mystical/10"
           >
             <Home className="w-4 h-4 mr-2" />
-            Home
+            Accueil
           </Button>
         </div>
       </div>

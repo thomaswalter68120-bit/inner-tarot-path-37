@@ -6,9 +6,9 @@ import { TarotCard } from "./TarotCard";
 import { getRandomCards, TarotCard as TarotCardType } from "@/data/tarotCards";
 
 const drawOptions = [
-  { count: 1 as const, title: "Single Card", description: "Focus on your current situation" },
-  { count: 3 as const, title: "Three Cards", description: "Past, Present, Future insight" },
-  { count: 5 as const, title: "Five Cards", description: "Comprehensive life guidance" }
+  { count: 1 as const, title: "Carte Unique", description: "Focus sur votre situation actuelle" },
+  { count: 3 as const, title: "Trois Cartes", description: "Éclairage Passé, Présent, Futur" },
+  { count: 5 as const, title: "Cinq Cartes", description: "Guidance de vie complète" }
 ];
 
 export function CardDraw() {
@@ -22,7 +22,7 @@ export function CardDraw() {
     setIsDrawing(true);
     setRevealedCards([]);
     
-    const drawType = drawOptions.find(option => option.count === count)?.title || "Single Card";
+    const drawType = drawOptions.find(option => option.count === count)?.title || "Carte Unique";
     setCurrentDrawType(drawType);
     
     // Simulate card shuffling delay
@@ -55,9 +55,9 @@ export function CardDraw() {
     <div className="space-y-8">
       <Card className="bg-card/50 backdrop-blur-sm border-mystical/20">
         <CardHeader className="text-center">
-          <CardTitle className="text-2xl text-mystical">Choose Your Draw</CardTitle>
+          <CardTitle className="text-2xl text-mystical">Choisissez votre tirage</CardTitle>
           <p className="text-muted-foreground">
-            Select the number of cards for your psychological insight session
+            Sélectionnez le nombre de cartes pour votre séance d'éclairage psychologique
           </p>
         </CardHeader>
         <CardContent>
@@ -81,16 +81,16 @@ export function CardDraw() {
       {isDrawing && (
         <div className="text-center py-12">
           <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-mystical mb-4"></div>
-          <p className="text-mystical">Shuffling the cards...</p>
+          <p className="text-mystical">Mélange des cartes...</p>
         </div>
       )}
 
       {drawnCards.length > 0 && !isDrawing && (
         <div className="space-y-6">
           <div className="text-center">
-            <h3 className="text-xl font-semibold text-mystical mb-2">Your Reading</h3>
+            <h3 className="text-xl font-semibold text-mystical mb-2">Votre tirage</h3>
             <p className="text-muted-foreground">
-              Click each card to reveal its psychological meaning
+              Cliquez sur chaque carte pour révéler sa signification psychologique
             </p>
           </div>
           
@@ -109,9 +109,9 @@ export function CardDraw() {
           {drawnCards.length === 3 && revealedCards.length > 0 && (
             <div className="text-center space-y-2">
               <div className="flex justify-center gap-8 text-sm text-muted-foreground">
-                <span>Past</span>
-                <span>Present</span>
-                <span>Future</span>
+                <span>Passé</span>
+                <span>Présent</span>
+                <span>Futur</span>
               </div>
             </div>
           )}
@@ -119,7 +119,7 @@ export function CardDraw() {
           {revealedCards.length === drawnCards.length && drawnCards.length > 0 && (
             <div className="text-center py-8">
               <div className="inline-block animate-spin rounded-full h-6 w-6 border-b-2 border-mystical mb-4"></div>
-              <p className="text-mystical font-medium">Preparing your complete reading...</p>
+              <p className="text-mystical font-medium">Préparation de votre lecture complète...</p>
             </div>
           )}
         </div>
