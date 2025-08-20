@@ -47,34 +47,27 @@ export function TarotCard({ card, isRevealed = false, onReveal, delay = 0 }: Tar
               </div>
             </div>
           ) : (
-            <div className="p-6 h-full flex flex-col">
-              <div className="text-center mb-4">
-                <h3 className="text-xl font-bold text-mystical mb-2">{card.name}</h3>
-                <div className="flex flex-wrap gap-1 justify-center">
-                  {card.keywords.slice(0, 2).map((keyword, index) => (
-                    <span 
-                      key={index}
-                      className="text-xs bg-gold/20 text-gold px-2 py-1 rounded-full"
-                    >
-                      {keyword}
-                    </span>
-                  ))}
-                </div>
+            <div className="h-full flex flex-col">
+              <div className="w-full h-2/3 overflow-hidden">
+                <img 
+                  src={card.image} 
+                  alt={card.name}
+                  className="w-full h-full object-cover"
+                />
               </div>
-              
-              <div className="flex-1 space-y-4 text-sm">
-                <div>
-                  <h4 className="font-semibold text-mystical mb-2">Psychological Meaning</h4>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {card.psychologicalMeaning}
-                  </p>
-                </div>
-                
-                <div>
-                  <h4 className="font-semibold text-mystical mb-2">Personal Growth</h4>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {card.personalGrowth}
-                  </p>
+              <div className="p-4 h-1/3 flex flex-col justify-center">
+                <div className="text-center">
+                  <h3 className="text-lg font-bold text-mystical mb-2">{card.name}</h3>
+                  <div className="flex flex-wrap gap-1 justify-center">
+                    {card.keywords.slice(0, 2).map((keyword, index) => (
+                      <span 
+                        key={index}
+                        className="text-xs bg-gold/20 text-gold px-2 py-1 rounded-full"
+                      >
+                        {keyword}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
