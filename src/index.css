@@ -10,37 +10,43 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Base Colors - Warm Elegant Palette */
-    --background: 42 33% 95%;  /* Warm beige */
-    --foreground: 25 20% 15%;  /* Deep brown */
+    /* Base Colors - Cosy Lounge Palette */
+    --background: 225 35% 8%;     /* Deep night blue */
+    --foreground: 45 85% 85%;     /* Warm gold text */
 
-    --card: 42 50% 98%;        /* Soft cream */
-    --card-foreground: 25 20% 15%;
+    --card: 225 25% 12%;          /* Dark card background */
+    --card-foreground: 45 85% 85%;
 
-    --popover: 42 50% 98%;
-    --popover-foreground: 25 20% 15%;
+    --popover: 225 25% 12%;
+    --popover-foreground: 45 85% 85%;
 
-    /* Primary - Deep Blue */
-    --primary: 220 40% 25%;
-    --primary-foreground: 42 33% 95%;
+    /* Primary - Rich Burgundy */
+    --primary: 345 65% 35%;
+    --primary-foreground: 45 85% 95%;
 
-    /* Secondary - Burgundy */
-    --secondary: 345 35% 35%;
-    --secondary-foreground: 42 33% 95%;
+    /* Secondary - Deep Navy */
+    --secondary: 225 40% 15%;
+    --secondary-foreground: 45 85% 95%;
 
     /* Muted tones */
-    --muted: 42 20% 88%;
-    --muted-foreground: 25 15% 45%;
+    --muted: 225 20% 15%;
+    --muted-foreground: 45 40% 65%;
 
-    /* Accent - Gold */
+    /* Accent - Warm Gold */
     --accent: 45 85% 65%;
-    --accent-foreground: 25 20% 15%;
+    --accent-foreground: 225 35% 8%;
 
     /* Tarot-specific Colors */
-    --mystical: 220 40% 25%;      /* Deep blue for text */
-    --mystical-light: 220 40% 85%; /* Light blue accent */
+    --mystical: 45 85% 75%;       /* Warm gold for text */
+    --mystical-light: 45 85% 95%; /* Light gold accent */
     --gold: 45 85% 65%;           /* Gold accents */
     --gold-light: 45 85% 85%;     /* Light gold */
+    
+    /* Cosy lounge colors */
+    --burgundy: 345 65% 35%;      /* Deep burgundy */
+    --burgundy-light: 345 65% 85%; /* Light burgundy */
+    --night-blue: 225 35% 8%;     /* Deep night blue */
+    --candlelight: 45 90% 75%;    /* Warm candlelight gold */
 
     --destructive: 0 65% 55%;
     --destructive-foreground: 42 33% 95%;
@@ -48,16 +54,18 @@ All colors MUST be HSL.
     --input: 42 20% 88%;
     --ring: 45 85% 65%;
 
-    /* Premium Effects */
-    --gradient-mystical: linear-gradient(135deg, hsl(var(--mystical)), hsl(var(--secondary)));
-    --gradient-gold: linear-gradient(135deg, hsl(var(--gold)), hsl(45 85% 55%));
+    /* Premium Effects - Cosy Lounge */
+    --gradient-mystical: linear-gradient(135deg, hsl(var(--burgundy)), hsl(var(--secondary)));
+    --gradient-gold: linear-gradient(135deg, hsl(var(--gold)), hsl(var(--candlelight)));
     --gradient-subtle: linear-gradient(180deg, hsl(var(--background)), hsl(var(--muted)));
-    --gradient-card: linear-gradient(145deg, hsl(var(--card)) 0%, hsl(42 40% 96%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(var(--card)) 0%, hsl(225 20% 15%) 100%);
+    --gradient-lounge: linear-gradient(135deg, hsl(225 35% 8%) 0%, hsl(345 65% 15%) 50%, hsl(225 25% 12%) 100%);
     
-    --shadow-mystical: 0 10px 30px -10px hsl(var(--mystical) / 0.3);
-    --shadow-card: 0 8px 25px -8px hsl(var(--mystical) / 0.2);
-    --shadow-elegant: 0 12px 40px -10px hsl(var(--mystical) / 0.15);
-    --shadow-gold: 0 8px 32px -8px hsl(var(--gold) / 0.25);
+    --shadow-mystical: 0 10px 30px -10px hsl(var(--burgundy) / 0.4);
+    --shadow-card: 0 8px 25px -8px hsl(var(--gold) / 0.3);
+    --shadow-elegant: 0 12px 40px -10px hsl(var(--burgundy) / 0.2);
+    --shadow-gold: 0 8px 32px -8px hsl(var(--gold) / 0.4);
+    --shadow-candle: 0 0 50px hsl(var(--candlelight) / 0.3);
 
     --radius: 1rem;
 
@@ -73,31 +81,37 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 25 20% 8%;
-    --foreground: 42 33% 92%;
+    /* Same cosy theme for dark mode consistency */
+    --background: 225 35% 8%;
+    --foreground: 45 85% 85%;
 
-    --card: 25 20% 10%;
-    --card-foreground: 42 33% 92%;
+    --card: 225 25% 12%;
+    --card-foreground: 45 85% 85%;
 
-    --popover: 25 20% 10%;
-    --popover-foreground: 42 33% 92%;
+    --popover: 225 25% 12%;
+    --popover-foreground: 45 85% 85%;
 
-    --primary: 220 40% 70%;
-    --primary-foreground: 25 20% 8%;
+    --primary: 345 65% 35%;
+    --primary-foreground: 45 85% 95%;
 
-    --secondary: 345 35% 60%;
-    --secondary-foreground: 25 20% 8%;
+    --secondary: 225 40% 15%;
+    --secondary-foreground: 45 85% 95%;
 
-    --muted: 25 15% 15%;
-    --muted-foreground: 42 20% 65%;
+    --muted: 225 20% 15%;
+    --muted-foreground: 45 40% 65%;
 
-    --accent: 45 85% 75%;
-    --accent-foreground: 25 20% 8%;
+    --accent: 45 85% 65%;
+    --accent-foreground: 225 35% 8%;
 
-    --mystical: 220 40% 75%;
-    --mystical-light: 220 40% 25%;
-    --gold: 45 85% 75%;
+    --mystical: 45 85% 75%;
+    --mystical-light: 45 85% 95%;
+    --gold: 45 85% 65%;
     --gold-light: 45 85% 85%;
+    
+    --burgundy: 345 65% 35%;
+    --burgundy-light: 345 65% 85%;
+    --night-blue: 225 35% 8%;
+    --candlelight: 45 90% 75%;
 
     --destructive: 0 65% 65%;
     --destructive-foreground: 25 20% 8%;

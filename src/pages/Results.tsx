@@ -95,25 +95,29 @@ Rappel: Cette lecture est un miroir de votre sagesse intérieure. Faites confian
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-muted/30 to-accent/20 p-4">
+    <div className="min-h-screen bg-gradient-lounge p-4">
       <div className="max-w-4xl mx-auto space-y-6">
         {/* Header */}
         <div className="text-center space-y-2">
-          <h1 className="text-3xl font-bold text-mystical">Votre tirage</h1>
-          <p className="text-muted-foreground">
+          <h1 className="text-3xl font-playfair font-bold text-mystical">Votre tirage</h1>
+          <p className="text-candlelight/80">
             {drawType} • {new Date().toLocaleDateString('fr-FR')}
           </p>
         </div>
 
         {/* Cards Overview */}
-        <div className="flex flex-wrap justify-center gap-4 mb-8">
+        <div className="flex flex-wrap justify-center gap-6 mb-8">
           {cards.map((card, index) => (
             <div key={card.id} className="text-center">
-              <div className="w-20 h-28 bg-mystical/20 rounded-lg mb-2 flex items-center justify-center">
-                <span className="text-2xl">{card.name.charAt(0)}</span>
+              <div className="w-24 h-36 rounded-lg overflow-hidden mb-2 shadow-card">
+                <img 
+                  src={card.image} 
+                  alt={card.name}
+                  className="w-full h-full object-cover"
+                />
               </div>
               {cards.length > 1 && (
-                <p className="text-xs text-muted-foreground font-medium">
+                <p className="text-xs text-candlelight/70 font-playfair font-medium">
                   {getPositionLabel(index)}
                 </p>
               )}
@@ -124,11 +128,11 @@ Rappel: Cette lecture est un miroir de votre sagesse intérieure. Faites confian
         {/* Detailed Reading */}
         <div className="space-y-6">
           {cards.map((card, index) => (
-            <Card key={card.id} className="bg-card/80 backdrop-blur-sm border-mystical/20">
+            <Card key={card.id} className="bg-gradient-card border-gold/20 backdrop-blur-sm">
               <CardHeader>
-                <CardTitle className="text-xl text-mystical flex items-center gap-2">
+                <CardTitle className="text-xl text-mystical flex items-center gap-2 font-playfair">
                   {cards.length > 1 && (
-                    <span className="text-sm bg-mystical/20 text-mystical px-2 py-1 rounded-full">
+                    <span className="text-sm bg-burgundy/20 text-candlelight px-3 py-1 rounded-full font-playfair">
                       {getPositionLabel(index)}
                     </span>
                   )}
@@ -136,7 +140,7 @@ Rappel: Cette lecture est un miroir de votre sagesse intérieure. Faites confian
                 </CardTitle>
                 <div className="flex flex-wrap gap-1">
                   {card.keywords.slice(0, 4).map((keyword, idx) => (
-                    <span key={idx} className="text-xs bg-gold/20 text-gold px-2 py-1 rounded-full">
+                    <span key={idx} className="text-xs bg-gold/20 text-candlelight px-2 py-1 rounded-full">
                       {keyword}
                     </span>
                   ))}
@@ -144,23 +148,23 @@ Rappel: Cette lecture est un miroir de votre sagesse intérieure. Faites confian
               </CardHeader>
               <CardContent className="space-y-4">
                 <div>
-                  <h4 className="font-semibold text-mystical mb-2">Signification de la carte</h4>
+                  <h4 className="font-semibold text-mystical mb-2 font-playfair">Signification de la carte</h4>
                   <p className="text-muted-foreground leading-relaxed">
                     {card.uprightMeaning}
                   </p>
                 </div>
                 
-                <Separator className="bg-mystical/20" />
+                <Separator className="bg-gold/20" />
                 
                 <div>
-                  <h4 className="font-semibold text-mystical mb-2">Éclairage psychologique</h4>
+                  <h4 className="font-semibold text-mystical mb-2 font-playfair">Éclairage psychologique</h4>
                   <p className="text-muted-foreground leading-relaxed">
                     {card.psychologicalMeaning}
                   </p>
                 </div>
                 
                 <div>
-                  <h4 className="font-semibold text-mystical mb-2">Développement personnel</h4>
+                  <h4 className="font-semibold text-mystical mb-2 font-playfair">Développement personnel</h4>
                   <p className="text-muted-foreground leading-relaxed">
                     {card.personalGrowth}
                   </p>
@@ -171,9 +175,9 @@ Rappel: Cette lecture est un miroir de votre sagesse intérieure. Faites confian
         </div>
 
         {/* Overall Insight */}
-        <Card className="bg-gradient-to-r from-mystical/10 via-accent/10 to-gold/10 border-mystical/30">
+        <Card className="bg-gradient-to-r from-burgundy/10 via-gold/10 to-candlelight/10 border-gold/30 backdrop-blur-sm">
           <CardHeader>
-            <CardTitle className="text-xl text-mystical text-center">
+            <CardTitle className="text-xl text-mystical text-center font-playfair">
               Réflexion thérapeutique
             </CardTitle>
           </CardHeader>
@@ -192,7 +196,7 @@ Rappel: Cette lecture est un miroir de votre sagesse intérieure. Faites confian
           <Button
             onClick={handleShare}
             disabled={isSharing}
-            className="bg-mystical hover:bg-mystical/90 text-white"
+            className="bg-gradient-mystical hover:opacity-90 text-candlelight font-playfair"
           >
             <Share2 className="w-4 h-4 mr-2" />
             {isSharing ? "Partage..." : "Partager le tirage"}
@@ -201,7 +205,7 @@ Rappel: Cette lecture est un miroir de votre sagesse intérieure. Faites confian
           <Button
             onClick={() => navigate('/draw')}
             variant="outline"
-            className="border-mystical/30 hover:bg-mystical/10"
+            className="border-gold/30 hover:bg-gold/10 text-mystical font-playfair"
           >
             <RotateCcw className="w-4 h-4 mr-2" />
             Nouveau tirage
@@ -210,7 +214,7 @@ Rappel: Cette lecture est un miroir de votre sagesse intérieure. Faites confian
           <Button
             onClick={() => navigate('/')}
             variant="outline"
-            className="border-mystical/30 hover:bg-mystical/10"
+            className="border-gold/30 hover:bg-gold/10 text-mystical font-playfair"
           >
             <Home className="w-4 h-4 mr-2" />
             Accueil
