@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { majorArcana, TarotCard as TarotCardType } from "@/data/tarotCards";
 import tarotCardBack from "@/assets/tarot-card-back.jpg";
 
@@ -13,6 +15,8 @@ const drawOptions = [
 
 export function ManualCardDraw() {
   const navigate = useNavigate();
+  const [userName, setUserName] = useState("");
+  const [showNameInput, setShowNameInput] = useState(true);
   const [selectedDrawType, setSelectedDrawType] = useState<1 | 3 | 5 | null>(null);
   const [shuffledCards, setShuffledCards] = useState<TarotCardType[]>([]);
   const [selectedCards, setSelectedCards] = useState<TarotCardType[]>([]);
@@ -24,6 +28,13 @@ export function ManualCardDraw() {
     const shuffled = [...majorArcana].sort(() => Math.random() - 0.5);
     setShuffledCards(shuffled);
   }, []);
+
+  const handleNameSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (userName.trim()) {
+      setShowNameInput(false);
+    }
+  };
 
   const handleDrawTypeSelect = (count: 1 | 3 | 5) => {
     setSelectedDrawType(count);
@@ -57,10 +68,60 @@ export function ManualCardDraw() {
     navigate('/results', {
       state: {
         cards: selectedCards,
-        drawType: drawTypeLabels[selectedDrawType!]
+        drawType: drawTypeLabels[selectedDrawType!],
+        userName: userName
       }
     });
   };
+
+  if (showNameInput) {
+    return (
+      <div className="min-h-screen bg-gradient-lounge texture-overlay">
+        <div className="container max-w-md mx-auto py-16 px-4 flex items-center justify-center min-h-screen">
+          <Card className="card-premium w-full">
+            <CardContent className="p-8">
+              <div className="text-center mb-8">
+                <div className="w-20 h-20 bg-gradient-mystical rounded-full mx-auto mb-6 flex items-center justify-center shadow-candle">
+                  <div className="text-3xl">☉</div>
+                </div>
+                <h1 className="text-2xl font-playfair font-bold text-mystical mb-4">
+                  Bienvenue dans votre voyage intérieur
+                </h1>
+                <p className="text-muted-foreground leading-relaxed">
+                  Pour personnaliser votre lecture du Tarot de Marseille, 
+                  partagez-nous votre prénom
+                </p>
+              </div>
+              
+              <form onSubmit={handleNameSubmit} className="space-y-6">
+                <div>
+                  <Label htmlFor="name" className="text-mystical font-playfair">
+                    Votre prénom
+                  </Label>
+                  <Input
+                    id="name"
+                    type="text"
+                    value={userName}
+                    onChange={(e) => setUserName(e.target.value)}
+                    placeholder="Entrez votre prénom..."
+                    className="mt-2 bg-card/50 border-gold/30 focus:border-gold text-mystical"
+                    required
+                  />
+                </div>
+                
+                <Button 
+                  type="submit"
+                  className="w-full bg-gradient-mystical hover:opacity-90 text-candlelight font-playfair"
+                >
+                  Commencer mon tirage
+                </Button>
+              </form>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+    );
+  }
 
   if (!selectedDrawType) {
     return (
@@ -68,7 +129,7 @@ export function ManualCardDraw() {
         <div className="container max-w-2xl mx-auto py-8 px-4">
           <div className="text-center mb-12">
             <h1 className="text-3xl font-playfair font-bold text-mystical mb-4">
-              Choisissez votre tirage
+              Bonjour {userName}, choisissez votre tirage
             </h1>
             <p className="text-muted-foreground text-lg">
               Quel type de guidance recherchez-vous aujourd'hui ?
