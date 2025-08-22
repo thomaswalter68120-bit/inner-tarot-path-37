@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Share2, Home, RotateCcw, Sparkles } from "lucide-react";
-import { TarotCard as TarotCardType } from "@/data/tarotCards";
+import { TarotCard as TarotCardType } from "@/data/enhancedTarotCards";
 import { generateTarotInterpretation } from "@/utils/tarotInterpretation";
 import { toast } from "sonner";
 

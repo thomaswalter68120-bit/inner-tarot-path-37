@@ -1,5 +1,5 @@
 import OpenAI from 'openai';
-import { TarotCard } from '@/data/tarotCards';
+import { TarotCard } from '@/data/enhancedTarotCards';
 
 // Note: In a production app, you should use environment variables for the API key
 // For now, we'll create a placeholder that instructs users to add their key
@@ -25,7 +25,7 @@ export async function generateTarotInterpretation(
       `${card.name}: ${card.psychologicalMeaning}`
     ).join('\n');
 
-    const prompt = `Tu es un expert en Tarot de Marseille avec une approche psychologique et thérapeutique. Génère une interprétation personnalisée et poétique en français pour ${userName}.
+    const prompt = `Tu es un expert en Tarot de Marseille avec une approche psychologique et thérapeutique. Génère une interprétation personnalisée et structurée en français pour ${userName}.
 
 Cartes tirées: ${cardNames}
 Type de tirage: ${drawType}
@@ -33,17 +33,23 @@ Type de tirage: ${drawType}
 Significations des cartes:
 ${cardMeanings}
 
+Structure requise de l'interprétation:
+🌟 MESSAGE PRINCIPAL: L'idée forte du tirage (2-3 phrases)
+⚖️ POINTS POSITIFS: Forces, opportunités, atouts de la situation (2-3 phrases)
+⚠️ POINTS DE VIGILANCE: Risques, excès ou pièges à éviter (2-3 phrases)
+❓ QUESTION DE RÉFLEXION: Pistes de réflexion personnelles pour ${userName} (1-2 questions ouvertes)
+
 Consignes:
 - Utilise le prénom ${userName} plusieurs fois dans l'interprétation
 - Crée un texte fluide et narratif qui connecte toutes les cartes ensemble
 - Adopte un ton mystique, poétique et introspectif mais compréhensible
 - Évite les clichés de voyance ou les exagérations de diseuse de bonne aventure
 - Connecte le symbolisme des cartes au voyage personnel de ${userName}
-- Offre des clés de réflexion et de guidance
-- Le texte doit faire environ 150-200 mots
+- L'interprétation ne doit pas être uniquement positive, inclure des points d'attention
 - Utilise "tu" pour t'adresser à ${userName}
+- Respecte exactement la structure avec les émojis demandés
 
-Commence par "${userName}, ton tirage révèle..." et crée une interprétation qui se lit comme une histoire cohérente de transformation intérieure.`;
+Commence par "${userName}, ton tirage révèle..." pour le message principal.`;
 
     const response = await openai.chat.completions.create({
       model: 'gpt-4o-mini',
